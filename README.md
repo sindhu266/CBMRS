@@ -35,16 +35,16 @@ Admin can upload songs
 🛠️ Tech Stack
 💻 Programming Language
 Python
---- Libraries & Tools
+**--- Libraries & Tools**
 TensorFlow – Machine Learning
 NumPy – Numerical computing
 Pandas – Data processing
 Scikit-learn – ML algorithms
 Matplotlib – Visualization
---- Technologies
+--- **Technologies**
 NLP (Natural Language Processing)
 Machine Learning Algorithms
---- Project Structure
+**Project Structure**
 Chatbot-Music-Recommender/
 │
 ├── chatbot/
@@ -69,8 +69,8 @@ Chatbot-Music-Recommender/
 ├── app.py
 ├── requirements.txt
 └── README.md
-⚙️ Installation & Setup
-🔧 Prerequisites
+**Installation & Setup**
+ Prerequisites
 Python 3.x
 pip (Python package manager)
 1️⃣ Clone Repository
@@ -102,15 +102,15 @@ Personalized music recommendation
 Real-time chatbot interaction
 Mood-based song suggestions
 Scalable and user-friendly system
--- Limitations
+-- **Limitations**
 Requires quality dataset for better recommendations
 Accuracy depends on user input
 Limited real-time streaming integration
---Future Enhancements
+--**Future Enhancements**
 Integration with Spotify API
 Voice-based chatbot
 Mobile application support
 Deep learning-based recommendation
---- Author
+--- **Author**
 
 Sindhu Yaragani
