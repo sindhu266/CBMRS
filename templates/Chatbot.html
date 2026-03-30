@@ -1,0 +1,82 @@
+{% load static %}
+<html>
+<head>
+<title>Chatbot Based Music Recommendation System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+<script>
+function displayFullName() {
+    var request = new XMLHttpRequest();
+	var input = document.getElementById("t2").value;
+	var data = ""
+	data = data + document.getElementById("t1").value+"\n"
+	data = data + "You: "+input+"\n"
+	request.open("GET", "http://127.0.0.1:8000/ChatData?mytext="+input);
+	request.onreadystatechange = function() {
+    if(this.readyState === 4 && this.status === 200) {
+	    var output = this.responseText
+		const index = output.indexOf("#");
+		if (index !== -1) {
+			const arr = output.split("#");
+			document.getElementById("offers").innerHTML = "";
+			document.getElementById("offers").appendChild(document.createTextNode("Recommended Songs List"));
+			document.getElementById("offers").appendChild(document.createElement("br"));
+			for (var i = 0; i < arr.length; i++) {		
+			    const arr1 = arr[i].split(",");
+				a = document.createElement('a');
+			    a.href =  "MusicPlay?t1="+arr1[0]; // Insted of calling setAttribute 
+			    a.target = "'_blank'";
+			    a.innerHTML = "<font size='3' color='blue'>"+arr1[1]+"</font>";
+			    document.getElementById("offers").appendChild(a); // Append the link to the div
+				document.getElementById("offers").appendChild(document.createElement("br"));
+			   }
+			   document.getElementById("t2").value = "";
+			} else {
+			    data = data + "You: "+output+"\n"
+				document.getElementById("t1").innerHTML = data;
+				document.getElementById("t2").value = "";
+			}
+        }
+    };
+	request.send();
+}
+</script>
+</head>
+<body>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+        <h1><span>Chatbot Based Music Recommendation System</span><small></small></h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_bg">
+        <div class="menu_nav">
+          <ul>
+            <ul>
+      
+     <li><a href="{% url 'Chatbot' %}"><font size="3" color="black">Interact with Chatbot</a></li>
+	     <li><a href="{% url 'index' %}"><font size="3" color="black">Logout</a></li>
+   </ul>
+          </ul>
+        </div>
+        <div class="hbg"><img src="{% static 'images/header_images.jpg' %}" width="915" height="286" alt="" /></div>
+
+		<font size="3" color="red"><center>{{ data|safe }}</center></font>
+
+       
+ <center><font size="" color="black">Interact with ChatBot</center></font></p>
+	<div id="offers">
+	
+    </div>
+<br/>
+          <div id="result">
+        <textarea name="t1" id="t1" rows="20" cols="80"></textarea>
+    </div>
+	<input type="text" name="t2" id="t2" size="60"/>
+    <button type="button" onclick="displayFullName()">Click Here to Send Message</button>
+
+	<br/><br/><br/><br/><br/>
+</body>
+</html>
